@@ -1,5 +1,5 @@
-[update_manager SMS_Notification]
+[update_manager sms_notification]
 type: git_repo
 path: ~/sms_notification
-origin: https://github.com/eddiedellz/SMS-Notification.git
+origin: https://github.com/eddiedellz/sms_notification.git
 is_system_service: False
