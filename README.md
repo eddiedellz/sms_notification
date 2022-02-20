@@ -16,10 +16,10 @@ The module can be installed into a existing Klipper installation with an install
 Add the below [sms_notification] to your config file. 
 
     [sms_notification]
-    ACCSID = XXXXX #Replace with Account SID from Twilio account
-    AUTHTOKEN = XXXXX #Replace with Auth Token from Twilio account
-    PHONETO = +13479999999 #Replace with phone number you want the notifications sent to
-    PHONEFROM = +13479999999 #Replace with phone number from Twilio account
+    accsid = XXXXX #Replace with Account SID from Twilio account
+    authtoken = XXXXX #Replace with Auth Token from Twilio account
+    phoneto = +13479999999 #Replace with phone number you want the notifications sent to
+    phonefrom = +13479999999 #Replace with phone number from Twilio account
     
 Replace XXXXX with your Twilio Account SID, Auth token, Twilio phone number. Change YOURPHONE=+13479999999 to your phone number area code first. for example if your phone number is 1-347-999-999 YOURPHONE=+13479999999. If you are useing the trial account the phone number you send the sms to must be the verified phone number in your Twilio account.
 
