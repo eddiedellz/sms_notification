@@ -2,7 +2,7 @@
 Plug-in to allow klipper to send yourself text message notifications.
 
 ## First Step
-You will need a Twilio account. Go to Twilios website and sign up for an account. Although this is a pay service you can start with the trial account and get a bank of text messages.
+You will need a Twilio account. Go to [Twilios website](http://www.twilio.com) and sign up for an account. Although this is a pay service you can start with the trial account and get a bank of text messages.
 
 ## Installation
 
