@@ -1,3 +1,5 @@
+# This file may be distributed under the terms of the GNU GPLv3 license.
+
 from twilio.rest import Client 
 from twilio.base.exceptions import TwilioRestException
 
@@ -5,33 +7,32 @@ class smsnotification:
 
     def __init__(self, config):
         self.printer = config.get_printer()
-        self.ACCSID = config.get('ACCSID', None)
-        self.AUTHTOKEN = config.get('AUTHTOKEN', None)
-        self.PHONETO = config.get('PHONETO', None)
-        self.PHONETO = config.get('PHONEFROM', None)
-        self.MSG = config.get('MSG', None)
-        self.printer.register_event_handler('klippy:ready', self._handle_ready)
+        self.accsid = config.get('accsid', None)
+        self.authtoken = config.get('authtoken', None)
+        self.phoneto = config.get('phoneto', None)
+        self.phonefrom = config.get('phonefrom', None)
         gcode = self.printer.lookup_object('gcode')
         gcode.register_command('SMSSEND', self.cmd_SMSSEND)
         
     def cmd_SMSSEND(self, gcmd):
-        self._handle_ready()
-        try:
-            client = Client(self.ACCSID, self.AUTHTOKEN) 
-            
-            message = client.messages.create(
-            to="+17188252399", 
-            from_="+18484208874",
-            body=self.MSG)
-            gcmd.respond_info(message.sid)
-            
-        except TwilioRestException as errf:
-            raise gcmd.error(errf)
+        msg = gcmd.get('MSG', '')
+        if(msg != ''):
+            gcmd.respond_info(msg)
+            try:
+                client = Client(self.accsid, self.authtoken) 
+                message = client.messages.create(
+                to=self.phoneto, 
+                from_=self.phonefrom,
+                body=msg)
+                gcmd.respond_info("SMS Notification Sent")
+                        
+            except TwilioRestException as errf:
+                raise gcmd.error(errf)
 
-    def _handle_ready(self):
-        self.reactor = self.printer.get_reactor()
-        self.printProgress = 0
-        self.displayStatus = self.printer.lookup_object('display_status')            
+        else:
+            raise gcmd.error("No Message found."
+            "Format command smssend msg=your message")
+
 
 def load_config(config):
     return smsnotification(config)
