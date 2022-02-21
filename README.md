@@ -6,7 +6,7 @@ You will need a Twilio account. Go to [Twilios website](http://www.twilio.com) a
 
 ## Installation
 
-The module can be installed into a existing Klipper installation with an install script. 
+The module can be installed into a existing Klipper installation with an install script. SSH in and:
 
     cd ~
     git clone https://github.com/eddiedellz/sms_notification.git
